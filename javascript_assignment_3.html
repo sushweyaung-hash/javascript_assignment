@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Assignment 3 - filter()</title>
+</head>
+<body>
+  <h1>JavaScript Assignment 3 - filter()</h1>
+  <p>Open the browser console to see the result.</p>
+
+  <script>
+    // 1. Copy the array
+    const people = [
+      "Alice Anderson",
+      "Aaron Adams",
+      "Bella Brown",
+      "Brian Black",
+      "Cathy Carter",
+      "Charles Cooper",
+      "Diana Davis",
+      "Daniel Drake",
+      "Ella Evans",
+      "Ethan Edwards",
+      "Fiona Fisher",
+      "Frank Foster",
+      "Grace Green",
+      "Gavin Gray",
+      "Hannah Harris",
+      "Henry Hill",
+      "Isabella Ingram",
+      "Ian Irving",
+      "Jack Johnson",
+      "Julia James"
+    ];
+
+    // 2. Choose a letter (hardcoded)
+    const chosenLetter = "B";
+
+    // 3. Use filter() to get only names starting with that letter
+    const result = people.filter((person) => {
+      return person.charAt(0) === chosenLetter;
+    });
+
+    // 4. Show the result
+    console.log("Names starting with", chosenLetter + ":", result);
+  </script>
+</body>
+</html>
