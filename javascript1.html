@@ -1,0 +1,21 @@
+<html>
+  <body>
+
+    <ul id="list1"></ul>
+
+    <script>
+      // Loop from 1 to 20
+      for (let i = 1; i <= 20; i++) {
+
+        // Skip 5, 10, 15
+        if (i === 5 || i === 10 || i === 15) {
+          continue; 
+        }
+
+        // Append the list item
+        document.getElementById("list1").innerHTML += `<li>${i}</li>`;
+      }
+    </script>
+
+  </body>
+</html>

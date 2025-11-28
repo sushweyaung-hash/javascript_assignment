@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Monster Detail</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: "Times New Roman", serif;
+      padding: 40px 60px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    select {
+      font-size: 22px;
+      padding: 4px 8px;
+      margin-top: 8px;
+    }
+
+    hr {
+      margin: 20px 0;
+    }
+
+    .field-label {
+      font-weight: bold;
+      font-size: 22px;
+      display: inline-block;
+      width: 80px;    /* gives a little space before the value */
+    }
+
+    .field-value {
+      font-size: 22px;
+    }
+
+    .field-row {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Monster Detail</h1>
+
+  <!-- Select Area -->
+  <div>
+    <label for="monsterSelect">Select Monster:</label><br>
+    <select id="monsterSelect">
+      <option value="-">-</option>
+      <!-- Options will be added by JavaScript -->
+    </select>
+  </div>
+
+  <hr>
+
+  <!-- Detail Area -->
+  <div id="detailArea">
+    <div class="field-row">
+      <span class="field-label">ID</span>
+      <span class="field-value" id="monId"></span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Name</span>
+      <span class="field-value" id="monName"></span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">HP</span>
+      <span class="field-value" id="monHp"></span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">EXP</span>
+      <span class="field-value" id="monExp"></span>
+    </div>
+  </div>
+
+  <script>
+    // ==== JSON DATA (example, matches your screenshot names) ====
+    const monsters = [
+      { id: 1, name: "Fire Dragon",       hp: 120, exp: 80 },
+      { id: 2, name: "Ice Wolf",          hp: 75,  exp: 45 },
+      { id: 3, name: "Shadow Goblin",     hp: 50,  exp: 30 },
+      { id: 4, name: "Lightning Phoenix", hp: 95,  exp: 70 },
+      { id: 5, name: "Earth Golem",       hp: 150, exp: 90 },
+      { id: 6, name: "Poison Spider",     hp: 60,  exp: 35 }
+    ];
+
+    // ==== DOM elements ====
+    const selectEl = document.getElementById("monsterSelect");
+    const idEl   = document.getElementById("monId");
+    const nameEl = document.getElementById("monName");
+    const hpEl   = document.getElementById("monHp");
+    const expEl  = document.getElementById("monExp");
+
+    // ==== 1. Fill the dropdown with monster names ====
+    monsters.forEach(mon => {
+      const opt = document.createElement("option");
+      opt.value = mon.name;
+      opt.textContent = mon.name;   // use text, not innerHTML
+      selectEl.appendChild(opt);
+    });
+
+    // ==== 2. Helper: clear the detail area ====
+    function clearDetail() {
+      idEl.textContent = "";
+      nameEl.textContent = "";
+      hpEl.textContent = "";
+      expEl.textContent = "";
+    }
+
+    // ==== 3. When user changes the selection ====
+    selectEl.addEventListener("change", function () {
+      const selectedName = selectEl.value;
+
+      // If default "-"
+      if (selectedName === "-") {
+        clearDetail();
+        return;
+      }
+
+      // Find the monster with this name
+      let found = null;
+      for (const m of monsters) {       // for-of loop, as in the hint
+        if (m.name === selectedName) {
+          found = m;
+          break;
+        }
+      }
+
+      if (found) {
+        idEl.textContent   = found.id;
+        nameEl.textContent = found.name;
+        hpEl.textContent   = found.hp;
+        expEl.textContent  = found.exp;
+      } else {
+        clearDetail();
+      }
+    });
+
+    // Start with empty detail
+    clearDetail();
+  </script>
+
+</body>
+</html>
